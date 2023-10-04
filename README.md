@@ -1,4 +1,4 @@
-# [CVPR 2023] Official Implementation of VideoMAE V2
+# [CVPR 2023] Fine Tune Implementation of VideoMAE V2
 
 ![flowchart](misc/VideoMAEv2_flowchart.png)
 
