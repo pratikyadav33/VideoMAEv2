@@ -1,0 +1,17 @@
+av
+decord
+deepspeed
+einops
+matplotlib
+numpy
+opencv-python-headless
+pandas
+Pillow
+protobuf==3.20.0
+scipy
+tensorboard==2.9.0
+tensorboardX==1.8
+timm==0.4.12
+torch>=1.2
+torchaudio
+torchvision
