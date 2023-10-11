@@ -42,7 +42,9 @@ def build_dataset(is_train, test_mode, args):
         anno_path = os.path.join(args.data_path, 'train.csv')
     elif test_mode:
         mode = 'test'
-        anno_path = os.path.join(args.data_path, 'val.csv')
+        # anno_path = os.path.join(args.data_path, 'val.csv')
+        # original code points to val.csv
+        anno_path = os.path.join(args.data_path, 'test.csv')
     else:
         mode = 'validation'
         anno_path = os.path.join(args.data_path, 'val.csv')
@@ -183,6 +185,27 @@ def build_dataset(is_train, test_mode, args):
             args=args)
         nb_classes = 101
 
+    # adding custom dataset which is a subset of UCF101
+    elif args.data_set == 'UCF101Subset':
+        dataset = VideoClsDataset(
+            anno_path=anno_path,
+            data_root=args.data_root,
+            mode=mode,
+            clip_len=args.num_frames,
+            frame_sample_rate=args.sampling_rate,
+            num_segment=1,
+            test_num_segment=args.test_num_segment,
+            test_num_crop=args.test_num_crop,
+            num_crop=1 if not test_mode else 3,
+            keep_aspect_ratio=True,
+            crop_size=args.input_size,
+            short_side_size=args.short_side_size,
+            new_height=256,
+            new_width=320,
+            args=args)
+        nb_classes = 2
+
+
     elif args.data_set == 'HMDB51':
         dataset = VideoClsDataset(
             anno_path=anno_path,
@@ -220,27 +243,6 @@ def build_dataset(is_train, test_mode, args):
             new_width=320,
             args=args)
         nb_classes = 48
-# added custom dataset 
-    elif args.data_set == 'UCF101Subset':
-        print("data_set UCF101Subset")
-        dataset = VideoClsDataset(
-            anno_path=anno_path,
-            data_root=args.data_root,
-            mode=mode,
-            clip_len=args.num_frames,
-            frame_sample_rate=args.sampling_rate,
-            num_segment=1,
-            test_num_segment=args.test_num_segment,
-            test_num_crop=args.test_num_crop,
-            num_crop=1 if not test_mode else 3,
-            keep_aspect_ratio=True,
-            crop_size=args.input_size,
-            short_side_size=args.short_side_size,
-            new_height=256,
-            new_width=320,
-            args=args)
-        nb_classes = 2
-
     elif args.data_set == 'MIT':
         if not args.sparse_sample:
             dataset = VideoClsDataset(
