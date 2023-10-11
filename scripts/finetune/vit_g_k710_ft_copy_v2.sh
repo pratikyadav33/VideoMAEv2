@@ -8,7 +8,7 @@ export OMP_NUM_THREADS=1
 # export CUDA_TOOLKIT_ROOT_DIR=$CUDA_HOME
 # export LD_LIBRARY_PATH=$CUDA_HOME/toolkit/10.2.89/lib64:$CUDA_HOME/toolkit/10.2.89/extras/CUPTI/lib64:/usr/ebuild/software/GCCcore/11.2.0/lib64:/cm/local/apps/gcc/10.2.0/lib:/cm/local/apps/gcc/10.2.0/lib64:/cm/local/apps/gcc/10.2.0/lib32:/cm/shared/apps/slurm/current/lib64/slurm:/cm/shared/apps/slurm/current/lib64:$CUDA_HOME/toolkit/10.2.89/include
 # export LIBRARY_PATH=$CUDA_HOME/toolkit/10.2.89/lib64:/cm/shared/apps/slurm/current/lib64/slurm:/cm/shared/apps/slurm/current/lib64
-# export CFLAG
+
 OUTPUT_DIR='/home/pratiky1/nilanb_ada/users/pratiky1/fact/VideoMAEv2/output/pratik'
 DATA_PATH='/home/pratiky1/nilanb_ada/users/pratiky1/fact/VideoMAEv2/dataset/UCF101_subset_basketball'
 MODEL_PATH='/home/pratiky1/nilanb_ada/users/pratiky1/fact/VideoMAEv2/models/vit_b_k710_dl_from_giant.pth'
