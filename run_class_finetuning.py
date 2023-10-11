@@ -5,6 +5,15 @@
 # https://github.com/facebookresearch/deit
 # https://github.com/facebookresearch/dino
 # --------------------------------------------------------'
+# 
+# added UCF101Subset as an item in the data_set array
+#    parser.add_argument(
+        # '--data_set',
+        # default='Kinetics-400',
+        # choices=[
+            # 'Kinetics-400', 'Kinetics-600', 'Kinetics-700', 'SSV2', 'UCF101', 'UCF101Subset',
+            # 'HMDB51', 'Diving48', 'Kinetics-710', 'MIT'
+        # ],
 
 import argparse
 import datetime
@@ -19,6 +28,8 @@ from pathlib import Path
 import deepspeed
 import numpy as np
 import torch
+# added code import torch.nn as nn
+import torch.nn as nn
 import torch.backends.cudnn as cudnn
 from timm.data.mixup import Mixup
 from timm.loss import LabelSmoothingCrossEntropy, SoftTargetCrossEntropy
@@ -304,7 +315,7 @@ def get_args():
         help='dataset path for evaluation')
     parser.add_argument(
         '--nb_classes',
-        default=400,
+        default=2,
         type=int,
         help='number of the classification types')
     parser.add_argument(
@@ -315,9 +326,9 @@ def get_args():
     parser.add_argument('--sparse_sample', default=False, action='store_true')
     parser.add_argument(
         '--data_set',
-        default='Kinetics-400',
+        default='UCF101Subset',
         choices=[
-            'Kinetics-400', 'Kinetics-600', 'Kinetics-700', 'SSV2', 'UCF101',
+            'Kinetics-400', 'Kinetics-600', 'Kinetics-700', 'SSV2', 'UCF101', 'UCF101Subset',
             'HMDB51', 'Diving48', 'Kinetics-710', 'MIT'
         ],
         type=str,
@@ -529,6 +540,21 @@ def main(args, ds_init):
         with_cp=args.with_checkpoint,
     )
 
+    # start added code for UCF101Subset dataset
+    # Freeze the layers
+    for param in model.parameters():
+        param.requires_grad = False
+    
+    # Add a new classification layer for the UCF101 dataset
+    num_classes_ucf101subset = 2
+    model.head = nn.Linear(model.head.in_features, num_classes_ucf101subset)
+
+    # Unfreeze the new classification layer
+    for param in model.head.parameters():
+        param.requires_grad = True
+
+    # end added code for UCF101Subset dataset
+
     patch_size = model.patch_embed.patch_size
     print("Patch size = %s" % str(patch_size))
 
@@ -565,18 +591,21 @@ def main(args, ds_init):
                     k].shape != state_dict[k].shape:
                 if checkpoint_model[k].shape[
                         0] == 710 and args.data_set.startswith('Kinetics'):
-                    print(f'Convert K710 head to {args.data_set} head')
                     if args.data_set == 'Kinetics-400':
                         label_map_path = 'misc/label_710to400.json'
                     elif args.data_set == 'Kinetics-600':
                         label_map_path = 'misc/label_710to600.json'
                     elif args.data_set == 'Kinetics-700':
                         label_map_path = 'misc/label_710to700.json'
+                    elif args.data_set == 'Kinetics-710':
+                        label_map_path = 'misc/label_710to710.json'
 
                     label_map = json.load(open(label_map_path))
                     checkpoint_model[k] = checkpoint_model[k][label_map]
                 else:
-                    print(f"Removing key {k} from pretrained checkpoint")
+                    # print(f"Removing key {k} from pretrained checkpoint")
+                    # added different print statement
+                    print("Removing key from pretrained checkpoint")
                     del checkpoint_model[k]
 
         all_keys = list(checkpoint_model.keys())
