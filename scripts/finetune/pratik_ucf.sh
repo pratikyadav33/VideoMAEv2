@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -x
 
+
 export MASTER_PORT=$((12000 + $RANDOM % 20000))
 export OMP_NUM_THREADS=1
 
@@ -12,7 +13,7 @@ DATA_ROOT='/home/pratiky1/nilanb_ada/users/pratiky1/fact/VideoMAEv2/dataset/UCF1
 
 
 OUTPUT_DIR='/home/pratiky1/nilanb_ada/users/pratiky1/fact/VideoMAEv2/output/pratik/vit_g_hybrid_pt_1200e_k710_it_ucf101_'${SPLIT}'_ft'
-DATA_PATH='/home/pratiky1/nilanb_ada/users/pratiky1/fact/VideoMAEv2/dataset/UCF101_subset_basketball/'${SPLIT}
+DATA_PATH='/home/pratiky1/nilanb_ada/users/pratiky1/fact/VideoMAEv2/dataset/UCF101_subset_basketball/'
 MODEL_PATH='/home/pratiky1/nilanb_ada/users/pratiky1/fact/VideoMAEv2/models/vit_g_hybrid_pt_1200e_k710_ft.pth'
 
 JOB_NAME=$1

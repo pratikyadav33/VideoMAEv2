@@ -326,7 +326,7 @@ def get_args():
     parser.add_argument('--sparse_sample', default=False, action='store_true')
     parser.add_argument(
         '--data_set',
-        default='Kinetics-400',
+        default='UCF101Subset',
         choices=[
             'Kinetics-400', 'Kinetics-600', 'Kinetics-700', 'SSV2', 'UCF101', 'UCF101Subset',
             'HMDB51', 'Diving48', 'Kinetics-710', 'MIT'
