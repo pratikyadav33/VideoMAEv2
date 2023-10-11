@@ -315,7 +315,7 @@ def get_args():
         help='dataset path for evaluation')
     parser.add_argument(
         '--nb_classes',
-        default=400,
+        default=2,
         type=int,
         help='number of the classification types')
     parser.add_argument(
