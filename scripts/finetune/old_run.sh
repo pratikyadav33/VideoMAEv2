@@ -9,7 +9,7 @@ export OMP_NUM_THREADS=1
 # export LD_LIBRARY_PATH=$CUDA_HOME/toolkit/10.2.89/lib64:$CUDA_HOME/toolkit/10.2.89/extras/CUPTI/lib64:/usr/ebuild/software/GCCcore/11.2.0/lib64:/cm/local/apps/gcc/10.2.0/lib:/cm/local/apps/gcc/10.2.0/lib64:/cm/local/apps/gcc/10.2.0/lib32:/cm/shared/apps/slurm/current/lib64/slurm:/cm/shared/apps/slurm/current/lib64:$CUDA_HOME/toolkit/10.2.89/include
 # export LIBRARY_PATH=$CUDA_HOME/toolkit/10.2.89/lib64:/cm/shared/apps/slurm/current/lib64/slurm:/cm/shared/apps/slurm/current/lib64
 
-OUTPUT_DIR='/home/pratiky1/nilanb_ada/users/pratiky1/fact/VideoMAEv2/output/pratik'
+OUTPUT_DIR='/home/pratiky1/nilanb_ada/users/pratiky1/VideoMAEv2/output/pratik'
 DATA_PATH='/home/pratiky1/nilanb_ada/users/pratiky1/VideoMAEv2/dataset/UCF101_subset_basketball/'
 MODEL_PATH='/home/pratiky1/nilanb_ada/users/pratiky1/fact/VideoMAEv2/models/vit_g_hybrid_pt_1200e_k710_ft.pth'
 # adding variable DATA_ROOT for custom dataset
@@ -20,9 +20,9 @@ DATA_ROOT='/home/pratiky1/nilanb_ada/users/pratiky1/VideoMAEv2/dataset/UCF101_su
 JOB_NAME=$1
 PARTITION=${PARTITION:-"video"}
 # 8 for 1 node, 16 for 2 node, etc.
-GPUS=${GPUS:-32}
+GPUS=${GPUS:-8}
 GPUS_PER_NODE=${GPUS_PER_NODE:-8}
-CPUS_PER_TASK=${CPUS_PER_TASK:-14}
+CPUS_PER_TASK=${CPUS_PER_TASK:-8}
 SRUN_ARGS=${SRUN_ARGS:-""}
 PY_ARGS=${@:2}
 
