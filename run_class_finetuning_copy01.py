@@ -879,6 +879,9 @@ def main(args, ds_init):
                     epoch=epoch,
                     model_ema=model_ema)
         if data_loader_val is not None:
+            print("TETST%TTTTTTTTTT", data_loader_val)
+            print("TETST%TTTTTTTTTT", len(data_loader_val))
+
             test_stats = validation_one_epoch(data_loader_val, model, device)
             print(
                 f"Accuracy of the network on the {len(dataset_val)} val images: {test_stats['acc1']:.2f}%"
