@@ -196,7 +196,7 @@ def validation_one_epoch(data_loader, model, device):
             output = model(images)
             loss = criterion(output, target)
 
-        acc1, acc5 = accuracy(output, target, topk=(1, 5))
+        acc1, acc5 = accuracy(output, target, topk=(1, 2))
 
         batch_size = images.shape[0]
         metric_logger.update(loss=loss.item())
@@ -247,7 +247,7 @@ def final_test(data_loader, model, device, file):
                 str(int(split_nb[i].cpu().numpy())))
             final_result.append(string)
 
-        acc1, acc5 = accuracy(output, target, topk=(1, 5))
+        acc1, acc5 = accuracy(output, target, topk=(1, 2))
 
         batch_size = images.shape[0]
         metric_logger.update(loss=loss.item())
