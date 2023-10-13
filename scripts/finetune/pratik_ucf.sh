@@ -9,12 +9,11 @@ export OMP_NUM_THREADS=1
 SPLIT=${SPLIT:-1}
 
 # adding variable DATA_ROOT for custom dataset
-DATA_ROOT='/home/pratiky1/nilanb_ada/users/pratiky1/fact/VideoMAEv2/dataset/UCF101_subset_basketball'
+DATA_ROOT='/home/pratiky1/nilanb_ada/users/pratiky1/VideoMAEv2/dataset/UCF101_subset_basketball'
 
 
 OUTPUT_DIR='/home/pratiky1/nilanb_ada/users/pratiky1/fact/VideoMAEv2/output/pratik/vit_g_hybrid_pt_1200e_k710_it_ucf101_'${SPLIT}'_ft'
-DATA_PATH='/home/pratiky1/nilanb_ada/users/pratiky1/fact/VideoMAEv2/dataset/UCF101_subset_basketball/'
-MODEL_PATH='/home/pratiky1/nilanb_ada/users/pratiky1/fact/VideoMAEv2/models/vit_g_hybrid_pt_1200e_k710_ft.pth'
+
 
 JOB_NAME=$1
 PARTITION=${PARTITION:-"video"}
