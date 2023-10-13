@@ -46,11 +46,11 @@ PY_ARGS=${@:2}
         --finetune ${MODEL_PATH} \
         --log_dir ${OUTPUT_DIR} \
         --output_dir ${OUTPUT_DIR} \
-        --batch_size 2 \
+        --batch_size 4 \
         --input_size 224 \
         --short_side_size 224 \
         --save_ckpt_freq 10 \
-        --num_frames 16 \
+        --num_frames 30 \
         --sampling_rate 4 \
         --num_sample 2 \
         --num_workers 2 \
