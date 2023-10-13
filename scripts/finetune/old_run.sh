@@ -50,7 +50,7 @@ PY_ARGS=${@:2}
         --input_size 224 \
         --short_side_size 224 \
         --save_ckpt_freq 10 \
-        --num_frames 30 \
+        --num_frames 16 \
         --sampling_rate 4 \
         --num_sample 2 \
         --num_workers 2 \
