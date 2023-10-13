@@ -65,5 +65,4 @@ PY_ARGS=${@:2}
         --test_num_segment 5 \
         --test_num_crop 3 \
         --dist_eval --enable_deepspeed \
-        --disable_eval_during_finetuning 0 \
         ${PY_ARGS}
